@@ -23,22 +23,22 @@ final class GildedRose
         foreach ($this->items as $item) {
 
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
-                if ($this->isGreaterThanMinimumQuality($item)) {
+                if ($item->isGreaterThanMinimumQuality()) {
                     if ($item->name !=  self::SULFURAS ) {
                         $item->decreaseQuality();
                     }
                 }
             } else {
-                if ($this->isLowerThanMaximumQuality($item)) {
+                if ($item->isLowerThanMaximumQuality()) {
                     $item->increaseQuality();
                     if ($item->name == self::BACKSTAGE) {
                         if ($item->isEarlyBird()) {
-                            if ($this->isLowerThanMaximumQuality($item)) {
+                            if ($item->isLowerThanMaximumQuality()) {
                                 $item->increaseQuality();
                             }
                         }
                         if ($item->isLastDatesToSellIn()) {
-                            if ($this->isLowerThanMaximumQuality($item)) {
+                            if ($item->isLowerThanMaximumQuality()) {
                                 $item->increaseQuality();
                             }
                         }
@@ -53,7 +53,7 @@ final class GildedRose
             if ($item->isOverdue()) {
                 if ($item->name != self::AGEDBRIE) {
                     if ($item->name != self::BACKSTAGE) {
-                        if ($this->isGreaterThanMinimumQuality($item)) {
+                        if ($item->isGreaterThanMinimumQuality()) {
                             if ($item->name != self::SULFURAS) {
                                 $item->decreaseQuality();
                             }
@@ -62,7 +62,7 @@ final class GildedRose
                         $item->resetQuality();
                     }
                 } else {
-                    if ($this->isLowerThanMaximumQuality($item)) {
+                    if ($item->isLowerThanMaximumQuality()) {
                         $item->increaseQuality();
                     }
                 }
@@ -70,23 +70,5 @@ final class GildedRose
         }
     }
 
-    /**
-     * @param Item $item
-     * @return bool
-     */
-    public function isLowerThanMaximumQuality(Item $item): bool
-    {
-        return $item->quality < 50;
-    }
-
-    /**
-     * @param Item $item
-     * @return bool
-     */
-    public function isGreaterThanMinimumQuality(Item $item): bool
-    {
-        return $item->quality > 0;
-    }
-    
 
 }

@@ -67,4 +67,16 @@ final class Item
     {
         return $this->sell_in < 0;
     }
+
+    public function isGreaterThanMinimumQuality(): bool
+    {
+        return $this->quality > 0;
+    }
+
+    public function isLowerThanMaximumQuality(): bool
+    {
+        return $this->quality < 50;
+    }
+
+
 }
