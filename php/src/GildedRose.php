@@ -59,7 +59,7 @@ final class GildedRose
                             }
                         }
                     } else {
-                        $item->quality = $item->quality - $item->quality;
+                        $item->quality = $this->resetQuality($item);
                     }
                 } else {
                     if ($this->isLowerThanMaximumQuality($item)) {
@@ -122,5 +122,14 @@ final class GildedRose
     public function decreaseQuality(Item $item): int
     {
         return $item->quality - 1;
+    }
+
+    /**
+     * @param Item $item
+     * @return int
+     */
+    public function resetQuality(Item $item): int
+    {
+        return $item->quality - $item->quality;
     }
 }
