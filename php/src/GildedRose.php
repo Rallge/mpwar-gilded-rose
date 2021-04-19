@@ -23,7 +23,7 @@ final class GildedRose
         foreach ($this->items as $item) {
 
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
-                if ($this->isGreaterMinimumQuality($item)) {
+                if ($this->isGreaterThanMinimumQuality($item)) {
                     if ($item->name !=  self::SULFURAS ) {
                         $item->quality = $item->quality - 1;
                     }
@@ -53,7 +53,7 @@ final class GildedRose
             if ($this->isOverdue($item)) {
                 if ($item->name != self::AGEDBRIE) {
                     if ($item->name != self::BACKSTAGE) {
-                        if ($this->isGreaterMinimumQuality($item)) {
+                        if ($this->isGreaterThanMinimumQuality($item)) {
                             if ($item->name != self::SULFURAS) {
                                 $item->quality = $item->quality - 1;
                             }
@@ -83,7 +83,7 @@ final class GildedRose
      * @param Item $item
      * @return bool
      */
-    public function isGreaterMinimumQuality(Item $item): bool
+    public function isGreaterThanMinimumQuality(Item $item): bool
     {
         return $item->quality > 0;
     }
