@@ -47,7 +47,7 @@ final class GildedRose
             }
 
             if ($item->name != self::SULFURAS) {
-                $item->sell_in = $item->sell_in - 1;
+                $item->sell_in = $this->decreaseSellIn($item);
             }
 
             if ($this->isOverdue($item)) {
@@ -140,5 +140,14 @@ final class GildedRose
     public function increaseQuality(Item $item): int
     {
         return $item->quality + 1;
+    }
+
+    /**
+     * @param Item $item
+     * @return int
+     */
+    public function decreaseSellIn(Item $item): int
+    {
+        return $item->sell_in - 1;
     }
 }
