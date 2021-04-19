@@ -24,7 +24,7 @@ final class GildedRose
 
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
                 if ($item->quality > 0) {
-                    if ($item->name !=  self::SULFURAS . '') {
+                    if ($item->name !=  self::SULFURAS ) {
                         $item->quality = $item->quality - 1;
                     }
                 }
