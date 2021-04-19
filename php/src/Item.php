@@ -62,4 +62,9 @@ final class Item
     {
         return $this->sell_in < 6;
     }
+
+    public function isOverdue(): bool
+    {
+        return $this->sell_in < 0;
+    }
 }
