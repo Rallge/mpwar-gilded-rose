@@ -38,7 +38,7 @@ final class GildedRose
                             }
                         }
                         if ($item->sell_in < 6) {
-                            if ($item->quality < 50) {
+                            if ($this->isMaximumQuality($item)) {
                                 $item->quality = $item->quality + 1;
                             }
                         }
@@ -62,11 +62,20 @@ final class GildedRose
                         $item->quality = $item->quality - $item->quality;
                     }
                 } else {
-                    if ($item->quality < 50) {
+                    if ($this->isMaximumQuality($item)) {
                         $item->quality = $item->quality + 1;
                     }
                 }
             }
         }
+    }
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
+    public function isMaximumQuality(Item $item): bool
+    {
+        return $item->quality < 50;
     }
 }
