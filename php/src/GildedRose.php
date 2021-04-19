@@ -6,7 +6,7 @@ namespace GildedRose;
 
 final class GildedRose
 {
-    const SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    const SULFURAS = 'Sulfuras, Hand of Ragnaros';
     const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
     /**
      * @var Item[]
@@ -24,7 +24,7 @@ final class GildedRose
 
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
                 if ($item->quality > 0) {
-                    if ($item->name !=  self::SULFURAS_HAND_OF_RAGNAROS . '') {
+                    if ($item->name !=  self::SULFURAS . '') {
                         $item->quality = $item->quality - 1;
                     }
                 }
@@ -46,7 +46,7 @@ final class GildedRose
                 }
             }
 
-            if ($item->name != self::SULFURAS_HAND_OF_RAGNAROS) {
+            if ($item->name != self::SULFURAS) {
                 $item->sell_in = $item->sell_in - 1;
             }
 
@@ -54,7 +54,7 @@ final class GildedRose
                 if ($item->name != self::AGEDBRIE) {
                     if ($item->name != self::BACKSTAGE) {
                         if ($item->quality > 0) {
-                            if ($item->name != self::SULFURAS_HAND_OF_RAGNAROS) {
+                            if ($item->name != self::SULFURAS) {
                                 $item->quality = $item->quality - 1;
                             }
                         }
