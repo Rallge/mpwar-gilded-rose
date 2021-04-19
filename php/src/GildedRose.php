@@ -22,6 +22,9 @@ final class GildedRose
     {
         foreach ($this->items as $item) {
 
+            if ($item->name == self::SULFURAS) {
+                continue;
+            }
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
                 if ($item->name !=  self::SULFURAS ) {
                     $item->decreaseQuality();
