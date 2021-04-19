@@ -23,27 +23,19 @@ final class GildedRose
         foreach ($this->items as $item) {
 
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
-                if ($item->isGreaterThanMinimumQuality()) {
-                    if ($item->name !=  self::SULFURAS ) {
-                        $item->decreaseQuality();
-                    }
+                if ($item->name !=  self::SULFURAS ) {
+                    $item->decreaseQuality();
                 }
             } else {
-                if ($item->isLowerThanMaximumQuality()) {
                     $item->increaseQuality();
                     if ($item->name == self::BACKSTAGE) {
                         if ($item->isEarlyBird()) {
-                            if ($item->isLowerThanMaximumQuality()) {
-                                $item->increaseQuality();
-                            }
+                            $item->increaseQuality();
                         }
                         if ($item->isLastDatesToSellIn()) {
-                            if ($item->isLowerThanMaximumQuality()) {
-                                $item->increaseQuality();
-                            }
+                            $item->increaseQuality();
                         }
                     }
-                }
             }
 
             if ($item->name != self::SULFURAS) {
@@ -53,18 +45,14 @@ final class GildedRose
             if ($item->isOverdue()) {
                 if ($item->name != self::AGEDBRIE) {
                     if ($item->name != self::BACKSTAGE) {
-                        if ($item->isGreaterThanMinimumQuality()) {
-                            if ($item->name != self::SULFURAS) {
-                                $item->decreaseQuality();
-                            }
+                        if ($item->name != self::SULFURAS) {
+                            $item->decreaseQuality();
                         }
                     } else {
                         $item->resetQuality();
                     }
                 } else {
-                    if ($item->isLowerThanMaximumQuality()) {
-                        $item->increaseQuality();
-                    }
+                    $item->increaseQuality();
                 }
             }
         }

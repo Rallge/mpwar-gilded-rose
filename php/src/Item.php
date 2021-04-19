@@ -34,7 +34,9 @@ final class Item
     }
 
     public function increaseQuality(): void {
-        $this->quality = $this->quality + 1;
+        if ($this->isLowerThanMaximumQuality()) {
+            $this->quality = $this->quality + 1;
+        }
     }
 
     public function decreaseSellIn():void
@@ -49,7 +51,9 @@ final class Item
 
     public function decreaseQuality(): void
     {
-        $this->quality = $this->quality - 1;
+        if ($this->isGreaterThanMinimumQuality()) {
+            $this->quality = $this->quality - 1;
+        }
     }
 
 
@@ -73,7 +77,7 @@ final class Item
         return $this->quality > 0;
     }
 
-    public function isLowerThanMaximumQuality(): bool
+    private function isLowerThanMaximumQuality(): bool
     {
         return $this->quality < 50;
     }
