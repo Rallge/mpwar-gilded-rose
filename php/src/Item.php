@@ -32,4 +32,8 @@ final class Item
     {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
+
+    public function increaseQuality(): void {
+        $this->quality = $this->quality + 1;
+    }
 }

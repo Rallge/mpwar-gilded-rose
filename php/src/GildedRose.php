@@ -30,16 +30,16 @@ final class GildedRose
                 }
             } else {
                 if ($this->isLowerThanMaximumQuality($item)) {
-                    $item->quality = $this->increaseQuality($item);
+                    $item->increaseQuality();
                     if ($item->name == self::BACKSTAGE) {
                         if ($this->isEarlyBird($item)) {
                             if ($this->isLowerThanMaximumQuality($item)) {
-                                $item->quality = $this->increaseQuality($item);
+                                $item->increaseQuality();
                             }
                         }
                         if ($this->isLastDatesToSellIn($item)) {
                             if ($this->isLowerThanMaximumQuality($item)) {
-                                $item->quality = $this->increaseQuality($item);
+                                $item->increaseQuality();
                             }
                         }
                     }
@@ -63,7 +63,7 @@ final class GildedRose
                     }
                 } else {
                     if ($this->isLowerThanMaximumQuality($item)) {
-                        $item->quality = $this->increaseQuality($item);
+                        $item->increaseQuality();
                     }
                 }
             }
@@ -131,15 +131,6 @@ final class GildedRose
     public function resetQuality(Item $item): int
     {
         return $item->quality - $item->quality;
-    }
-
-    /**
-     * @param Item $item
-     * @return int
-     */
-    public function increaseQuality(Item $item): int
-    {
-        return $item->quality + 1;
     }
 
     /**
