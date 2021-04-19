@@ -25,7 +25,7 @@ final class GildedRose
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
                 if ($this->isGreaterThanMinimumQuality($item)) {
                     if ($item->name !=  self::SULFURAS ) {
-                        $item->quality = $item->quality - 1;
+                        $item->quality = $this->decreaseQuality($item);
                     }
                 }
             } else {
@@ -55,7 +55,7 @@ final class GildedRose
                     if ($item->name != self::BACKSTAGE) {
                         if ($this->isGreaterThanMinimumQuality($item)) {
                             if ($item->name != self::SULFURAS) {
-                                $item->quality = $item->quality - 1;
+                                $item->quality = $this->decreaseQuality($item);;
                             }
                         }
                     } else {
@@ -113,5 +113,14 @@ final class GildedRose
     public function isEarlyBird(Item $item): bool
     {
         return $item->sell_in < 11;
+    }
+
+    /**
+     * @param Item $item
+     * @return int
+     */
+    public function decreaseQuality(Item $item): int
+    {
+        return $item->quality - 1;
     }
 }
