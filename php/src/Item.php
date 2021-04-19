@@ -36,4 +36,30 @@ final class Item
     public function increaseQuality(): void {
         $this->quality = $this->quality + 1;
     }
+
+    public function decreaseSellIn():void
+    {
+        $this->sell_in = $this->sell_in - 1;
+    }
+
+    public function resetQuality(): void
+    {
+         $this->quality = 0;
+    }
+
+    public function decreaseQuality(): void
+    {
+        $this->quality = $this->quality - 1;
+    }
+
+
+    public function isEarlyBird(): bool
+    {
+        return $this->sell_in < 11;
+    }
+
+    public function isLastDatesToSellIn(): bool
+    {
+        return $this->sell_in < 6;
+    }
 }

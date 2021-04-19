@@ -25,19 +25,19 @@ final class GildedRose
             if ($item->name != self::AGEDBRIE and $item->name != self::BACKSTAGE) {
                 if ($this->isGreaterThanMinimumQuality($item)) {
                     if ($item->name !=  self::SULFURAS ) {
-                        $item->quality = $this->decreaseQuality($item);
+                        $item->decreaseQuality();
                     }
                 }
             } else {
                 if ($this->isLowerThanMaximumQuality($item)) {
                     $item->increaseQuality();
                     if ($item->name == self::BACKSTAGE) {
-                        if ($this->isEarlyBird($item)) {
+                        if ($item->isEarlyBird()) {
                             if ($this->isLowerThanMaximumQuality($item)) {
                                 $item->increaseQuality();
                             }
                         }
-                        if ($this->isLastDatesToSellIn($item)) {
+                        if ($item->isLastDatesToSellIn()) {
                             if ($this->isLowerThanMaximumQuality($item)) {
                                 $item->increaseQuality();
                             }
@@ -47,7 +47,7 @@ final class GildedRose
             }
 
             if ($item->name != self::SULFURAS) {
-                $item->sell_in = $this->decreaseSellIn($item);
+                $item->decreaseSellIn();
             }
 
             if ($this->isOverdue($item)) {
@@ -55,11 +55,11 @@ final class GildedRose
                     if ($item->name != self::BACKSTAGE) {
                         if ($this->isGreaterThanMinimumQuality($item)) {
                             if ($item->name != self::SULFURAS) {
-                                $item->quality = $this->decreaseQuality($item);;
+                                $item->decreaseQuality();
                             }
                         }
                     } else {
-                        $item->quality = $this->resetQuality($item);
+                        $item->resetQuality();
                     }
                 } else {
                     if ($this->isLowerThanMaximumQuality($item)) {
@@ -97,48 +97,5 @@ final class GildedRose
         return $item->sell_in < 0;
     }
 
-    /**
-     * @param Item $item
-     * @return bool
-     */
-    public function isLastDatesToSellIn(Item $item): bool
-    {
-        return $item->sell_in < 6;
-    }
 
-    /**
-     * @param Item $item
-     * @return bool
-     */
-    public function isEarlyBird(Item $item): bool
-    {
-        return $item->sell_in < 11;
-    }
-
-    /**
-     * @param Item $item
-     * @return int
-     */
-    public function decreaseQuality(Item $item): int
-    {
-        return $item->quality - 1;
-    }
-
-    /**
-     * @param Item $item
-     * @return int
-     */
-    public function resetQuality(Item $item): int
-    {
-        return $item->quality - $item->quality;
-    }
-
-    /**
-     * @param Item $item
-     * @return int
-     */
-    public function decreaseSellIn(Item $item): int
-    {
-        return $item->sell_in - 1;
-    }
 }
