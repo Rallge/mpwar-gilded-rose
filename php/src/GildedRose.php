@@ -50,7 +50,7 @@ final class GildedRose
                 $item->sell_in = $item->sell_in - 1;
             }
 
-            if ($item->sell_in < 0) {
+            if ($this->isOverdue($item)) {
                 if ($item->name != self::AGEDBRIE) {
                     if ($item->name != self::BACKSTAGE) {
                         if ($this->isGreaterMinimumQuality($item)) {
@@ -86,5 +86,14 @@ final class GildedRose
     public function isGreaterMinimumQuality(Item $item): bool
     {
         return $item->quality > 0;
+    }
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
+    public function isOverdue(Item $item): bool
+    {
+        return $item->sell_in < 0;
     }
 }
