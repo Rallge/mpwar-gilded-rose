@@ -37,7 +37,7 @@ final class GildedRose
                                 $item->quality = $item->quality + 1;
                             }
                         }
-                        if ($item->sell_in < 6) {
+                        if ($this->isLastDatesToSellIn($item)) {
                             if ($this->isLessMaximumQuality($item)) {
                                 $item->quality = $item->quality + 1;
                             }
@@ -95,5 +95,14 @@ final class GildedRose
     public function isOverdue(Item $item): bool
     {
         return $item->sell_in < 0;
+    }
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
+    public function isLastDatesToSellIn(Item $item): bool
+    {
+        return $item->sell_in < 6;
     }
 }
