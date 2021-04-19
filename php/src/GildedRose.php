@@ -29,16 +29,16 @@ final class GildedRose
                     }
                 }
             } else {
-                if ($item->quality < 50) {
+                if ($this->isLessMaximumQuality($item)) {
                     $item->quality = $item->quality + 1;
                     if ($item->name == self::BACKSTAGE) {
                         if ($item->sell_in < 11) {
-                            if ($item->quality < 50) {
+                            if ($this->isLessMaximumQuality($item)) {
                                 $item->quality = $item->quality + 1;
                             }
                         }
                         if ($item->sell_in < 6) {
-                            if ($this->isMaximumQuality($item)) {
+                            if ($this->isLessMaximumQuality($item)) {
                                 $item->quality = $item->quality + 1;
                             }
                         }
@@ -62,7 +62,7 @@ final class GildedRose
                         $item->quality = $item->quality - $item->quality;
                     }
                 } else {
-                    if ($this->isMaximumQuality($item)) {
+                    if ($this->isLessMaximumQuality($item)) {
                         $item->quality = $item->quality + 1;
                     }
                 }
@@ -74,7 +74,7 @@ final class GildedRose
      * @param Item $item
      * @return bool
      */
-    public function isMaximumQuality(Item $item): bool
+    public function isLessMaximumQuality(Item $item): bool
     {
         return $item->quality < 50;
     }
