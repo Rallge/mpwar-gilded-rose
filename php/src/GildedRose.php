@@ -10,7 +10,7 @@ final class GildedRose
      * @var Item[]
      */
     private $items;
-
+    const AGEDBRIE = 'Aged Brie';
     public function __construct(array $items)
     {
         $this->items = $items;
@@ -19,7 +19,8 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
+
+            if ($item->name != self::AGEDBRIE and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->quality > 0) {
                     if ($item->name != 'Sulfuras, Hand of Ragnaros') {
                         $item->quality = $item->quality - 1;
@@ -48,7 +49,7 @@ final class GildedRose
             }
 
             if ($item->sell_in < 0) {
-                if ($item->name != 'Aged Brie') {
+                if ($item->name != self::AGEDBRIE) {
                     if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
                         if ($item->quality > 0) {
                             if ($item->name != 'Sulfuras, Hand of Ragnaros') {
