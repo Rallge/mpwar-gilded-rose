@@ -32,7 +32,7 @@ final class GildedRose
                 if ($this->isLessMaximumQuality($item)) {
                     $item->quality = $item->quality + 1;
                     if ($item->name == self::BACKSTAGE) {
-                        if ($item->sell_in < 11) {
+                        if ($this->isEarlyBird($item)) {
                             if ($this->isLessMaximumQuality($item)) {
                                 $item->quality = $item->quality + 1;
                             }
@@ -104,5 +104,14 @@ final class GildedRose
     public function isLastDatesToSellIn(Item $item): bool
     {
         return $item->sell_in < 6;
+    }
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
+    public function isEarlyBird(Item $item): bool
+    {
+        return $item->sell_in < 11;
     }
 }
