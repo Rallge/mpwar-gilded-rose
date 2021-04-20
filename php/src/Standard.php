@@ -10,8 +10,8 @@ final class Standard extends Item
 
     public function update()
     {
-        $this->decreaseQuality();
         $this->decreaseSellIn();
+        $this->decreaseQuality();
         if ($this->isOverdue()) {
             $this->decreaseQuality();
         }

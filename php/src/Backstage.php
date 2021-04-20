@@ -17,6 +17,7 @@ final class Backstage extends Item
         if ($this->isLastDatesToSellIn()) {
             $this->increaseQuality();
         }
+        $this->decreaseSellIn();
         if ($this->isOverdue()) {
             $this->resetQuality();
         }

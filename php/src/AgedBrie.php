@@ -10,10 +10,10 @@ final class AgedBrie extends Item
 
     public function update()
     {
+        $this->decreaseSellIn();
         $this->increaseQuality();
         if ($this->isOverdue()) {
             $this->increaseQuality();
         }
-        $this->decreaseSellIn();
     }
 }
