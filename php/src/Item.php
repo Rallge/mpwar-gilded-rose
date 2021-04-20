@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
-final class Item
+
+abstract class Item
 {
+    const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+    const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
+    const AGEDBRIE = 'Aged Brie';
+    const STANDARD = 'Standard';
     /**
      * @var string
      */
@@ -32,6 +37,8 @@ final class Item
     {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
+    
+    abstract public function update();
 
     public function increaseQuality(): void {
         if ($this->isLowerThanMaximumQuality()) {
